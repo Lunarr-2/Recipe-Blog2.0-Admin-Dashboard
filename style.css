@@ -1,0 +1,365 @@
+:root {
+    --bg: #070317;
+    --bg-elevated: #120a2a;
+    --bg-elevated-soft: #1b1038;
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --border-strong: rgba(255, 255, 255, 0.14);
+    --text-main: #f7f2ff;
+    --text-muted: #b7a3ff;
+    --accent: #a855ff;
+    --accent-soft: rgba(168, 85, 255, 0.16);
+    --accent-strong: #7c3aed;
+    --accent-hover: #9f3dff;
+    --danger: #f97373;
+    --radius-lg: 18px;
+    --radius-md: 12px;
+    --radius-pill: 999px;
+    --shadow-soft: 0 24px 60px rgba(15, 6, 40, 0.8);
+    --shadow-subtle: 0 16px 40px rgba(12, 10, 34, 0.7);
+    --input-bg: rgba(13, 10, 35, 0.85);
+    --transition-fast: 0.18s ease-out;
+    --transition-med: 0.25s ease;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+    color: var(--text-main);
+    background:
+        radial-gradient(circle at top left, rgba(168, 85, 255, 0.28), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.32), transparent 55%),
+        var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+}
+
+.app {
+    width: 100%;
+    max-width: 960px;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    padding: 4px 6px;
+    color: var(--text-muted);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 20% 0%, #faccff, #9333ea 40%, #1d0b4a 80%);
+    color: #fdfbff;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    box-shadow: 0 16px 40px rgba(73, 28, 174, 0.7);
+}
+
+.brand h1 {
+    margin: 0 0 2px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.brand p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.card {
+    background: linear-gradient(135deg, rgba(13, 10, 35, 0.96), rgba(24, 11, 60, 0.98));
+    border-radius: 22px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(186, 160, 255, 0.18);
+    padding: 20px 22px 18px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 18px;
+    backdrop-filter: blur(22px);
+}
+
+.card-section {
+    background: radial-gradient(circle at top left, rgba(126, 34, 206, 0.16), transparent 55%), var(--bg-elevated);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    padding: 14px 14px 12px;
+    box-shadow: var(--shadow-subtle);
+}
+
+.card-section + .card-section {
+    margin-top: 6px;
+}
+
+.card-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    background: linear-gradient(90deg, rgba(168, 85, 255, 0.08), rgba(59, 130, 246, 0.06));
+}
+
+h2,
+h3 {
+    margin: 0 0 10px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+h2 {
+    font-size: 18px;
+    color: #fdf4ff;
+}
+
+h3 {
+    font-size: 14px;
+    color: #e0d4ff;
+    text-transform: uppercase;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.field-inline {
+    flex-direction: row;
+}
+
+.field-inline > * {
+    flex: 1;
+}
+
+label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 9px 11px;
+    border-radius: 11px;
+    border: 1px solid var(--border-subtle);
+    background-color: var(--input-bg);
+    color: var(--text-main);
+    font: inherit;
+    outline: none;
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background-color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(204, 195, 255, 0.7);
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px rgba(168, 85, 255, 0.5), 0 12px 28px rgba(22, 7, 70, 0.8);
+    transform: translateY(-1px);
+    background-color: rgba(16, 10, 46, 0.98);
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+/* Cooking instructions scrollbar styling */
+#instructions {
+    max-height: 220px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) transparent;
+}
+
+#instructions::-webkit-scrollbar {
+    width: 8px;
+}
+
+#instructions::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#instructions::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--accent-strong), var(--accent));
+    border-radius: 999px;
+}
+
+#instructions::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--accent-hover), var(--accent-strong));
+}
+
+button {
+    font: inherit;
+    border-radius: var(--radius-pill);
+    border: 1px solid transparent;
+    cursor: pointer;
+    padding: 8px 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition:
+        background-color var(--transition-med),
+        border-color var(--transition-med),
+        color var(--transition-med),
+        box-shadow var(--transition-med),
+        transform 0.14s ease-out;
+    white-space: nowrap;
+}
+
+button:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+    color: #fdfbff;
+    box-shadow: 0 16px 32px rgba(88, 28, 135, 0.7);
+    padding-inline: 22px;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--accent-hover), var(--accent-strong));
+    box-shadow: 0 20px 40px rgba(88, 28, 135, 0.9);
+}
+
+.btn-secondary {
+    background: rgba(15, 23, 42, 0.6);
+    color: var(--text-muted);
+    border-color: rgba(129, 140, 248, 0.4);
+    font-size: 12px;
+    padding-block: 6px;
+}
+
+.btn-secondary:hover {
+    background: rgba(129, 140, 248, 0.18);
+    color: #e0e7ff;
+}
+
+.ingredient {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.7fr) minmax(0, 0.9fr) auto;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 12px;
+    background: var(--bg-elevated-soft);
+    border: 1px solid var(--border-subtle);
+    align-items: center;
+}
+
+.ingredients-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ingredient input {
+    flex: 1;
+}
+
+.remove-btn {
+    background: rgba(248, 113, 113, 0.12);
+    color: var(--danger);
+    border-radius: 999px;
+    border-color: rgba(248, 113, 113, 0.35);
+    font-size: 11px;
+    padding: 6px 10px;
+    min-width: 70px;
+}
+
+.remove-btn:hover {
+    background: rgba(248, 113, 113, 0.2);
+}
+
+pre {
+    margin: 0;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: radial-gradient(circle at top left, rgba(216, 180, 254, 0.2), rgba(24, 16, 65, 0.9));
+    border: 1px solid rgba(190, 148, 255, 0.3);
+    font-size: 12px;
+    color: #fdf4ff;
+    max-height: 200px;
+    overflow: auto;
+}
+
+@media (max-width: 768px) {
+    body {
+        align-items: flex-start;
+    }
+
+    .card {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 16px 16px 14px;
+    }
+
+    .card-section {
+        padding: 12px 12px 10px;
+    }
+
+    .card-actions {
+        justify-content: stretch;
+    }
+
+    .card-actions .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .app-header {
+        margin-bottom: 10px;
+        padding-inline: 2px;
+    }
+
+    .brand h1 {
+        font-size: 18px;
+    }
+
+    .brand p {
+        font-size: 12px;
+    }
+}
