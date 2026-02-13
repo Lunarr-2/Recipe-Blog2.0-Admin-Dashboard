@@ -31,11 +31,41 @@ function addIngredient() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title, servings, description, instructions, ingredients })
     })
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById("response").textContent = JSON.stringify(data, null, 2);
-    })
-    .catch(err => {
-      document.getElementById("response").textContent = "Error: " + err;
-    });
+      .then(async (res) => {
+        const contentType = res.headers.get("content-type") || "";
+        const text = await res.text();
+  
+        if (contentType.includes("application/json")) {
+          let json;
+          try {
+            json = JSON.parse(text);
+          } catch (e) {
+            throw new Error("Failed to parse JSON response: " + text.slice(0, 300));
+          }
+  
+          if (!res.ok) {
+            const message = json.detail || json.message || JSON.stringify(json, null, 2);
+            throw new Error("Request failed: " + message);
+          }
+  
+          return json;
+        } else {
+          // Backend returned HTML or something else, surface it for easier debugging
+          throw new Error(
+            "Expected JSON but received " +
+              res.status +
+              " " +
+              res.statusText +
+              ":\n" +
+              text.slice(0, 400)
+          );
+        }
+      })
+      .then((data) => {
+        document.getElementById("response").textContent = JSON.stringify(data, null, 2);
+      })
+      .catch((err) => {
+        document.getElementById("response").textContent =
+          "Error: " + (err && err.message ? err.message : String(err));
+      });
   }
